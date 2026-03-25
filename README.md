@@ -1,113 +1,129 @@
-# Smart Fog Irrigation System
-## Hierarchical Edge–Fog–Cloud with Lightweight LSTM
+# 🌱 Smart Irrigation System using IoT, Edge Computing & Machine Learning
 
-> **Tamil Nadu-focused** smart irrigation using LoRa edge nodes, fog-level MPC/RL scheduling,
-> and a lightweight LSTM (int8 TFLite) deployable on ESP32.
+## 📌 Overview
 
----
+This project presents an intelligent **Smart Irrigation System** that integrates **IoT, Edge Computing, Fog Computing, and Machine Learning** to optimize water usage in agriculture.
 
-## Repository Structure
-
-```
-fog_irrigation/
-├── simulation/
-│   └── dataset_generator.py     # Synthetic TN soil moisture data (8 plots × 365 days)
-├── edge/
-│   ├── lstm_edge.py             # LSTM train → SVD compress → prune → int8 TFLite export
-│   └── esp32_edge_node.ino      # Arduino firmware (TFLite Micro + LoRa)
-├── lora_sim/
-│   └── lora_simulator.py        # LoRa channel model, gateway, edge node, packet codec
-├── fog/
-│   └── fog_scheduler.py         # MPC (LP) + RL (Q-learning) irrigation scheduler
-├── evaluation/
-│   └── sdg_metrics.py           # SDG 2/6/13 metrics, latency, model size comparison
-└── run_simulation.py            # End-to-end runner
-```
+The system collects real-time environmental data using sensors and applies predictive analytics (LSTM model) to make efficient irrigation decisions, reducing water wastage and improving crop productivity.
 
 ---
 
-## Quick Start
+## 🎯 Objectives
 
-```bash
-# 1. Install dependencies
-pip install numpy pandas scipy scikit-learn tensorflow --break-system-packages
+* Automate irrigation based on real-time environmental conditions
+* Predict water requirements using machine learning
+* Reduce water consumption and improve efficiency
+* Implement a scalable architecture using Edge & Fog computing
 
-# 2. Run full simulation (no hardware needed)
-cd fog_irrigation
-python run_simulation.py --days 30 --plots 8
+---
 
-# 3. Train + compress LSTM only
-python edge/lstm_edge.py
+## ⚙️ Tech Stack
 
-# 4. SDG evaluation only
-python evaluation/sdg_metrics.py
+* **Hardware:** ESP32 (Edge Device)
+* **Programming:** Python
+* **Machine Learning:** LSTM (Long Short-Term Memory)
+* **Communication:** LoRa Simulation
+* **Architecture:** Edge → Fog → Cloud
+* **Data Processing:** Simulation & Real Data Adapters
+
+---
+
+## 🧠 Key Features
+
+* 📡 Real-time data collection using IoT sensors
+* 🤖 LSTM-based prediction for irrigation needs
+* 🌐 Fog computing for task scheduling and processing
+* 📊 Simulation of environmental datasets
+* 📉 Performance evaluation using SDG-based metrics
+* 🔗 Integration of edge, fog, and simulation layers
+
+---
+
+## 🏗️ System Architecture
+
+The system follows a **multi-layer architecture**:
+
+* **Edge Layer:**
+  ESP32 collects sensor data (temperature, humidity, soil moisture)
+
+* **Fog Layer:**
+  Processes data and schedules irrigation tasks efficiently
+
+* **Cloud/Simulation Layer:**
+  Runs machine learning models and evaluates system performance
+
+---
+
+## 📂 Project Structure
+
+```
+smartIrrigation/
+│
+├── edge/                # ESP32 code & edge ML logic
+├── fog/                 # Fog scheduler and processing
+├── simulation/          # Dataset generation & adapters
+├── lora_sim/            # LoRa communication simulation
+├── evaluation/          # SDG metrics evaluation
+│
+├── run_simulation.py    # Main execution file
+├── ml_evaluation.py     # ML model evaluation
+├── fix_lstm.py          # LSTM model fixes
+└── README.md
 ```
 
 ---
 
-## Architecture
+## ▶️ How to Run the Project
+
+### 1. Clone the repository
 
 ```
-┌──────────────┐  LoRa   ┌──────────────────┐  HTTP  ┌───────────────┐
-│  ESP32 Edge  │ ──────► │   Fog Gateway     │ ─────► │  Cloud        │
-│  + LSTM int8 │ ◄────── │  MPC + RL Sched.  │        │  (training,   │
-│  + Soil/Temp │  cmd    │  RPi / Server     │        │   analytics)  │
-└──────────────┘         └──────────────────┘        └───────────────┘
-  ×8 plots (200–3000m)
+git clone https://github.com/Varshinisaba/smartIrrigation.git
+cd smartIrrigation
 ```
 
-### Edge Node (ESP32)
-- Capacitive soil moisture sensor + DHT22
-- TFLite Micro LSTM: hidden=32, SEQ_LEN=24, HORIZON=4 (next 2h @ 30min)
-- SVD factorization + magnitude pruning + int8 quantization → **~11 KB model**
-- Deep sleep 30 min between readings → ~6 months on 2000 mAh LiPo + solar
-- LoRa uplink: 7-byte payload (SF9, BW125, IN865)
+### 2. Install dependencies
 
-### Fog Controller (Raspberry Pi / Server)
-- **MPC**: LP-based receding-horizon optimizer (H=12 steps, 6h)
-  - Constraints: shared pump capacity, per-plot water quota
-- **RL**: Tabular Q-learning (expandable to DQN)
-  - State: [moisture bin, rain forecast, hour, days since irrigation]
-  - Reward: in-optimal-band + water saving – stress penalty
+```
+pip install -r requirements.txt
+```
 
-### Cloud (periodic)
-- Full LSTM retraining on accumulated data
-- OTA model update to edge nodes
+*(If requirements.txt is not present, install necessary libraries like numpy, pandas, tensorflow, etc.)*
+
+### 3. Run the simulation
+
+```
+python run_simulation.py
+```
 
 ---
 
-## SDG Alignment
+## 📊 Output & Results
 
-| Goal | Metric | Target |
-|------|--------|--------|
-| SDG 6 – Water | Water saved vs timer baseline | ≥ 25% |
-| SDG 2 – Food  | Time in optimal moisture band | ≥ 70% |
-| SDG 13 – Climate | Network traffic vs cloud-only | ≥ 94% reduction |
-
----
-
-## LSTM Compression Pipeline
-
-| Stage | Parameters | Size | MAE (h+1) |
-|-------|-----------|------|-----------|
-| Full LSTM (float32) | ~15k | 42 KB | 0.008 |
-| + SVD rank-16 | ~11k | 31 KB | 0.009 |
-| + Magnitude prune 40% | ~11k | 22 KB | 0.010 |
-| + int8 TFLite | ~11k | **11 KB** | 0.011 |
+* Efficient irrigation scheduling
+* Reduced water usage
+* Improved prediction accuracy using LSTM
+* Performance evaluated using sustainability metrics
 
 ---
 
-## Requirements
+## 🌍 Applications
 
-```
-numpy>=1.24
-pandas>=2.0
-scipy>=1.11
-scikit-learn>=1.3
-tensorflow>=2.13       # for training + TFLite export
-```
+* Smart agriculture systems
+* Precision farming
+* Water resource management
+* IoT-based environmental monitoring
 
-Arduino libraries (PlatformIO):
-- `tanakamasayuki/TensorFlowLite_ESP32`
-- `sandeepmistry/LoRa`
-- `adafruit/DHT sensor library`
+---
+
+## 🚀 Future Enhancements
+
+* Integration with real-time cloud platforms
+* Mobile/web dashboard for monitoring
+* Deployment with real sensors and actuators
+* Advanced ML models for higher accuracy
+
+---
+
+
+
