@@ -1,0 +1,62 @@
+{
+  "sdg6_vs_timer": {
+    "smart_water_m3": 18186.3,
+    "baseline_water_m3": 481.8,
+    "water_saved_m3": 0,
+    "water_saved_pct": 0.0,
+    "water_saved_per_ha_m3": 0.0,
+    "energy_saved_kwh": 0.0,
+    "co2_avoided_kg": 0.0,
+    "sdg": "SDG 6 \u2013 Clean Water & Sanitation"
+  },
+  "sdg6_vs_threshold": {
+    "smart_water_m3": 18186.3,
+    "baseline_water_m3": 16107.96,
+    "water_saved_m3": 0,
+    "water_saved_pct": 0.0,
+    "water_saved_per_ha_m3": 0.0,
+    "energy_saved_kwh": 0.0,
+    "co2_avoided_kg": 0.0,
+    "sdg": "SDG 6 \u2013 Clean Water & Sanitation"
+  },
+  "sdg2_yield": {
+    "time_in_optimal_band_pct": 50.0,
+    "stress_fraction": 0.3493,
+    "over_saturation_fraction": 0.0,
+    "moisture_cv": 0.2365,
+    "relative_yield_estimate": 0.703,
+    "sdg": "SDG 2 \u2013 Zero Hunger"
+  },
+  "latency": {
+    "edge_only_mean_ms": 11.9,
+    "edge_only_p95_ms": 15.2,
+    "edge_only_p99_ms": 16.3,
+    "edge_fog_mean_ms": 735.5,
+    "edge_fog_p95_ms": 808.8,
+    "edge_fog_p99_ms": 833.4,
+    "cloud_only_mean_ms": 319.3,
+    "cloud_only_p95_ms": 455.3,
+    "cloud_only_p99_ms": 521.6,
+    "edge_vs_cloud_speedup": 26.7,
+    "fog_vs_cloud_speedup": 0.4
+  },
+  "model_size": {
+    "full_lstm_float32_kb": 42.0,
+    "svd_factorized_kb": 31.0,
+    "svd_pruned_kb": 22.0,
+    "int8_tflite_kb": 11.2,
+    "esp32_flash_kb": 4096,
+    "esp32_sram_kb": 320,
+    "model_flash_pct": 0.27,
+    "activation_ram_kb": 3.1,
+    "activation_ram_pct": 0.97
+  },
+  "network_traffic": {
+    "n_plots": 8,
+    "days": 365,
+    "edge_fog_traffic_mb": 0.9,
+    "cloud_traffic_mb": 52.4,
+    "traffic_reduction_pct": 98.2,
+    "sdg": "SDG 13 \u2013 Climate Action (reduced cellular energy)"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "seq_len": 24,
+  "horizon": 4,
+  "hidden": 32,
+  "features": [
+    "soil_moisture",
+    "temperature_c",
+    "rainfall_mm",
+    "et_mm_day"
+  ],
+  "svd_rank": 16,
+  "prune_ratio": 0.4,
+  "base_mae_h1": 0.008519171092372676,
+  "compressed_mae_h1": 0.010392335493467807
+}
