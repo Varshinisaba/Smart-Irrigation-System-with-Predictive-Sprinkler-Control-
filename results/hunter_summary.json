@@ -1,0 +1,71 @@
+{
+  "hunter_models_used": [
+    "MP2000",
+    "MP1000"
+  ],
+  "best_regression_model": "Random Forest",
+  "regression_metrics": {
+    "Linear Regression": {
+      "mae_duration": 16.727,
+      "mae_radius": 1.335,
+      "r2_duration": 0.2547,
+      "r2_radius": 0.0285
+    },
+    "Ridge Regression": {
+      "mae_duration": 16.725,
+      "mae_radius": 1.335,
+      "r2_duration": 0.2547,
+      "r2_radius": 0.0285
+    },
+    "Random Forest": {
+      "mae_duration": 0.597,
+      "mae_radius": 1.305,
+      "r2_duration": 0.9959,
+      "r2_radius": 0.046
+    }
+  },
+  "water_ledger": {
+    "total_smart_L": 5978.8,
+    "total_timer_L": 2169.8,
+    "total_saved_L": 62.6,
+    "saved_pct": 2.9,
+    "total_events": 161,
+    "avg_duration_min": 84.0,
+    "avg_radius_m": 7.57
+  },
+  "per_crop": {
+    "Coconut": {
+      "events": 14,
+      "smart_L": 807.9400000000002,
+      "saved_L": 0.0
+    },
+    "Potato": {
+      "events": 39,
+      "smart_L": 1972.7500000000002,
+      "saved_L": 47.339999999999996
+    },
+    "Wheat": {
+      "events": 30,
+      "smart_L": 1709.1800000000003,
+      "saved_L": 0.0
+    },
+    "Tomato": {
+      "events": 38,
+      "smart_L": 761.9599999999999,
+      "saved_L": 0.0
+    },
+    "Chilli": {
+      "events": 40,
+      "smart_L": 727.01,
+      "saved_L": 15.260000000000002
+    }
+  },
+  "novel_contributions": [
+    "Hunter MP Rotator real specs (MP1000/MP2000/MP3000)",
+    "Regression-based geometry: Linear + Ridge + Random Forest compared",
+    "ET deficit + moisture deficit dual check before irrigation",
+    "Obstacle-aware arc selection (coconut trees)",
+    "Water ledger with per-crop tracking",
+    "Fog scheduler integration end-to-end"
+  ]
+}

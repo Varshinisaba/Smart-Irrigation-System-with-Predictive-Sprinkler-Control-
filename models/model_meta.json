@@ -10,6 +10,6 @@
   ],
   "svd_rank": 16,
   "prune_ratio": 0.4,
-  "base_mae_h1": 0.008519171092372676,
-  "compressed_mae_h1": 0.010392335493467807
+  "base_mae_h1": 0.007974598358287089,
+  "compressed_mae_h1": 0.00888202168358753
 }
