@@ -1,126 +1,196 @@
-# 🌱 Smart Irrigation System using IoT, Edge Computing & Machine Learning
+# 🌱 Smart Irrigation System with Predictive Sprinkler Control
 
-## 📌 Overview
+An intelligent irrigation management system that combines **IoT, Edge Computing, Fog Computing, Machine Learning, and Predictive Sprinkler Control** to optimize water usage and improve agricultural sustainability.
 
-This project presents an intelligent **Smart Irrigation System** that integrates **IoT, Edge Computing, Fog Computing, and Machine Learning** to optimize water usage in agriculture.
-
-The system collects real-time environmental data using sensors and applies predictive analytics (LSTM model) to make efficient irrigation decisions, reducing water wastage and improving crop productivity.
+The system continuously monitors environmental conditions, predicts future soil moisture using a lightweight **LSTM model**, and proactively controls sprinkler systems through a **three-tier Edge–Fog–Cloud architecture**.
 
 ---
 
-## 🎯 Objectives
+## 🚀 Key Features
 
-* Automate irrigation based on real-time environmental conditions
-* Predict water requirements using machine learning
-* Reduce water consumption and improve efficiency
-* Implement a scalable architecture using Edge & Fog computing
-
----
-
-## ⚙️ Tech Stack
-
-* **Hardware:** ESP32 (Edge Device)
-* **Programming:** Python
-* **Machine Learning:** LSTM (Long Short-Term Memory)
-* **Communication:** LoRa Simulation
-* **Architecture:** Edge → Fog → Cloud
-* **Data Processing:** Simulation & Real Data Adapters
-
----
-
-## 🧠 Key Features
-
-* 📡 Real-time data collection using IoT sensors
-* 🤖 LSTM-based prediction for irrigation needs
-* 🌐 Fog computing for task scheduling and processing
-* 📊 Simulation of environmental datasets
-* 📉 Performance evaluation using SDG-based metrics
-* 🔗 Integration of edge, fog, and simulation layers
+* 🌾 Real-time soil and environmental monitoring
+* 🧠 LSTM-based soil moisture prediction
+* 🚿 Predictive sprinkler control for optimized irrigation
+* 📡 LoRa-based communication simulation
+* ⚡ Edge computing for low-latency predictions
+* 🌐 Fog-layer intelligent irrigation scheduling
+* 📊 Water conservation and sustainability evaluation
+* 🔄 Automated irrigation decision-making
 
 ---
 
 ## 🏗️ System Architecture
 
-The system follows a **multi-layer architecture**:
-
-* **Edge Layer:**
-  ESP32 collects sensor data (temperature, humidity, soil moisture)
-
-* **Fog Layer:**
-  Processes data and schedules irrigation tasks efficiently
-
-* **Cloud/Simulation Layer:**
-  Runs machine learning models and evaluates system performance
-
----
-
-## 📂 Project Structure
-
-```
-smartIrrigation/
-│
-├── edge/                # ESP32 code & edge ML logic
-├── fog/                 # Fog scheduler and processing
-├── simulation/          # Dataset generation & adapters
-├── lora_sim/            # LoRa communication simulation
-├── evaluation/          # SDG metrics evaluation
-│
-├── run_simulation.py    # Main execution file
-├── ml_evaluation.py     # ML model evaluation
-├── fix_lstm.py          # LSTM model fixes
-└── README.md
+```text
+Field Sensors
+      │
+      ▼
+┌─────────────────┐
+│   Edge Layer    │
+│ ESP32 + LSTM    │
+│ Local Prediction│
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│    Fog Layer    │
+│ Smart Scheduler │
+│ MPC & RL Logic  │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│   Cloud Layer   │
+│ Analytics &     │
+│ Performance     │
+└─────────────────┘
 ```
 
 ---
 
-## ▶️ How to Run the Project
+## 🧠 Predictive Sprinkler Control
 
-### 1. Clone the repository
+Unlike traditional irrigation systems that activate sprinklers only after soil moisture drops below a threshold, this system predicts future moisture levels and takes proactive irrigation decisions.
 
-```
-git clone https://github.com/Varshinisaba/smartIrrigation.git
-cd smartIrrigation
-```
+The predictive sprinkler module:
 
-### 2. Install dependencies
-
-```
-pip install -r requirements.txt
-```
-
-*(If requirements.txt is not present, install necessary libraries like numpy, pandas, tensorflow, etc.)*
-
-### 3. Run the simulation
-
-```
-python run_simulation.py
-```
+* Forecasts upcoming moisture depletion
+* Determines irrigation requirements in advance
+* Calculates optimal watering duration
+* Minimizes water wastage
+* Maintains healthy soil conditions
+* Adapts irrigation based on crop characteristics
 
 ---
 
-## 📊 Output & Results
+## 📊 Machine Learning Pipeline
 
-* Efficient irrigation scheduling
-* Reduced water usage
-* Improved prediction accuracy using LSTM
-* Performance evaluated using sustainability metrics
+### Input Parameters
+
+* Soil Moisture
+* Temperature
+* Rainfall
+* Evapotranspiration (ET)
+
+### Model
+
+* Long Short-Term Memory (LSTM)
+
+### Optimization Techniques
+
+* Model Compression
+* Weight Pruning
+* SVD Factorization
+* INT8 Quantization (TFLite)
+
+### Output
+
+* Future Soil Moisture Prediction
+* Irrigation Requirement Forecast
+
+---
+
+## ⚙️ Technologies Used
+
+### Hardware
+
+* ESP32
+* Soil Moisture Sensors
+* Smart Sprinkler Systems
+
+### Software
+
+* Python
+* TensorFlow
+* NumPy
+* Pandas
+* SciPy
+
+### Architecture
+
+* Edge Computing
+* Fog Computing
+* Cloud Computing
+
+### Communication
+
+* LoRa Network Simulation
+
+---
+
+## 🌾 Supported Crops
+
+The system can be configured for multiple crop types, including:
+
+* Paddy
+* Sugarcane
+* Cotton
+* Groundnut
+* Wheat
+* Potato
+* Tomato
+* Chilli
+* Coconut
+
+Crop-specific parameters are used to improve irrigation accuracy and resource utilization.
+
+---
+
+## 🔄 Workflow
+
+1. Environmental data is collected from field sensors.
+2. Edge devices preprocess incoming data.
+3. The LSTM model predicts future soil moisture levels.
+4. Predictions are transmitted through the communication layer.
+5. The fog scheduler determines irrigation requirements.
+6. The predictive sprinkler controller calculates watering duration.
+7. Sprinklers are activated automatically.
+8. Performance metrics are generated for evaluation.
+
+---
+
+## 📈 Benefits
+
+* Reduced water consumption
+* Improved irrigation efficiency
+* Proactive sprinkler management
+* Lower operational costs
+* Scalable architecture
+* Sustainable agricultural practices
 
 ---
 
 ## 🌍 Applications
 
-* Smart agriculture systems
-* Precision farming
-* Water resource management
-* IoT-based environmental monitoring
+* Smart Agriculture
+* Precision Farming
+* IoT-Based Irrigation
+* Sustainable Water Management
+* Climate-Aware Farming
+* Agricultural Automation
 
 ---
 
-## 🚀 Future Enhancements
+## 🔮 Future Enhancements
 
-* Integration with real-time cloud platforms
-* Mobile/web dashboard for monitoring
-* Deployment with real sensors and actuators
+* Real-world ESP32 deployment
+* Weather API integration
+* Mobile application support
+* Live monitoring dashboard
+* Multi-farm deployment
+* Digital Twin integration
+* Advanced deep learning models
+
+---
+
+## 👩‍💻 Author
+
+**Varshini Sabapathy**
+
+### Project Summary
+
+Developed a Smart Irrigation System with Predictive Sprinkler Control using IoT, Edge Computing, Fog Computing, LoRa communication, and LSTM-based forecasting to enable intelligent water management and sustainable agriculture.
+
 * Advanced ML models for higher accuracy
 
 ---
